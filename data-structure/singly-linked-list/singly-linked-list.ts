@@ -1,18 +1,21 @@
 type NullableNode<T> = SLNode<T> | null;
 
-class SinglyLinkedList<T> {
+export class SinglyLinkedList<T> {
   head: NullableNode<T> = null;
   tail: NullableNode<T> = null;
   length: number = 0;
+
+  constructor(value?: T) {
+    if (value !== null && value !== undefined) {
+      this.initialize(value);
+    }
+  }
 
   private initialize(value: T) {
     const node = new SLNode(value);
     this.head = node;
     this.tail = node;
     this.length = 1;
-  }
-  constructor(value: T) {
-    this.initialize(value);
   }
   private isOutOfRange(index: number) {
     return index < 0 || index > this.length - 1;
@@ -26,6 +29,7 @@ class SinglyLinkedList<T> {
 
     this.tail.next = new SLNode(value);
     this.length++;
+
     return true;
   }
   pop(): NullableNode<T> {
@@ -33,16 +37,28 @@ class SinglyLinkedList<T> {
       return null;
     }
 
-    let nextTail: NullableNode<T> = this.head;
+    if (this.length === 1) {
+      const popped = this.head;
+
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+
+      return popped;
+    }
+
     let prev = this.head;
-    while (nextTail !== null) {
-      prev = nextTail;
-      nextTail = nextTail.next;
+    let current = this.head;
+    while (current.next !== null) {
+      prev = current;
+      current = current.next;
     }
 
     prev.next = null;
 
-    return prev;
+    this.length--;
+
+    return current;
   }
   get(index: number): NullableNode<T> {
     if (this.head === null) {
@@ -75,6 +91,8 @@ class SinglyLinkedList<T> {
     }
 
     prevNode.next = new SLNode(value);
+    this.length++;
+
     return true;
   }
   remove(index: number) {
@@ -91,6 +109,7 @@ class SinglyLinkedList<T> {
     const toRemove = toRemovePrev.next;
 
     toRemovePrev.next = toRemove ? toRemove.next : null;
+    this.length--;
 
     return true;
   }
