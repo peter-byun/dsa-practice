@@ -4,6 +4,7 @@ class SinglyLinkedList<T> {
   head: NullableNode<T> = null;
   tail: NullableNode<T> = null;
   length: number = 0;
+
   private initialize(value: T) {
     const node = new SLNode(value);
     this.head = node;

@@ -1,0 +1,24 @@
+{
+  "name": "dsa-practice",
+  "version": "1.0.0",
+  "description": "collection of data structure and algorithm concepts",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peter-byun/dsa-practice.git"
+  },
+  "author": "Peter Byun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peter-byun/dsa-practice/issues"
+  },
+  "homepage": "https://github.com/peter-byun/dsa-practice#readme",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
