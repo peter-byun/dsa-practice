@@ -1,2 +1,100 @@
-// TODO : implement it
-//  push, pop, get, set, insert, remove, rotate
+type NullableNode<T> = SLNode<T> | null;
+
+class SinglyLinkedList<T> {
+  head: NullableNode<T> = null;
+  tail: NullableNode<T> = null;
+  length: number = 0;
+  initialize(value: T) {
+    const node = new SLNode(value);
+    this.head = node;
+    this.tail = node;
+    this.length = 1;
+  }
+  constructor(value: T) {
+    this.initialize(value);
+  }
+  push(value: T): boolean {
+    if (this.length === 0 || this.head === null || this.tail === null) {
+      this.initialize(value);
+      return true;
+    }
+
+    this.tail.next = new SLNode(value);
+    this.length++;
+    return true;
+  }
+  pop(): NullableNode<T> {
+    if (this.head === null) {
+      return null;
+    }
+
+    let nextTail: NullableNode<T> = this.head;
+    let prev = this.head;
+    while (nextTail !== null) {
+      prev = nextTail;
+      nextTail = nextTail.next;
+    }
+
+    prev.next = null;
+
+    return prev;
+  }
+  get(index: number): NullableNode<T> {
+    if (this.head === null) {
+      return null;
+    }
+
+    let node = this.head;
+    for (let i = 1; i <= index; i++) {
+      if (!node?.next) {
+        return null;
+      }
+      node = node?.next;
+    }
+
+    return node;
+  }
+  set(index: number, value: T): boolean {
+    const toChanage = this.get(index);
+    if (toChanage) {
+      toChanage.value = value;
+      return true;
+    }
+    return false;
+  }
+  insert(index: number, value: T) {
+    const isOutOfBoundary = index < 0 || index > this.length - 1;
+    const prevNode = this.get(index - 1);
+    if (isOutOfBoundary || prevNode === null) {
+      throw new Error(`index ${index} is out of range.`);
+    }
+
+    prevNode.next = new SLNode(value);
+    return true;
+  }
+  remove(index: number) {
+    // handle index 0
+
+    const toRemovePrev = this.get(index - 1);
+    if (toRemovePrev === null) {
+      return false;
+    }
+
+    const toRemove = toRemovePrev.next;
+
+    const newNext = toRemove ? toRemove.next : null;
+    toRemovePrev.next = newNext;
+
+    return true;
+  }
+  rotate() {}
+}
+
+class SLNode<T> {
+  value: T;
+  next: SLNode<T> | null;
+  constructor(value: T) {
+    this.value = value;
+    this.next = null;
+  }
+}
