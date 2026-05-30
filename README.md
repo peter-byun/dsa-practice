@@ -1,7 +1,8 @@
 This repository contains implementations of various data structures and algorithms in TypeScript.
 
-To run a test agains a specific file, use the command:
+See **[STUDY_GUIDE.md](./STUDY_GUIDE.md)** for the recommended order.
 
 ```bash
-vitest fileName
+npm test                              # all tests
+npx vitest run data-structure/stack   # one module
 ```

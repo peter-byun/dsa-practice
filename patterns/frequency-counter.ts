@@ -1,5 +1,5 @@
 // O of n
-function isAnagram(str1: string, str2: string): boolean {
+export function isAnagram(str1: string, str2: string): boolean {
   if (str1.length !== str2.length) return false;
 
   // Frequency Counter Pattern - using an object to cache the frequency of characters.
@@ -20,7 +20,7 @@ function isAnagram(str1: string, str2: string): boolean {
   return true;
 }
 
-function isAnagramWithoutFrequencyCounter(str1: string, str2: string): boolean {
+export function isAnagramWithoutFrequencyCounter(str1: string, str2: string): boolean {
   if (str1.length !== str2.length) return false;
 
   const str1Arr = str1.split("");

@@ -1,4 +1,5 @@
-function bubbleSort(arr: number[]): number[] {
+// Passes: compare neighbors, swap if out of order; stop early if no swaps
+export function bubbleSort(arr: number[]): number[] {
   const n = arr.length;
   let swapped: boolean;
 

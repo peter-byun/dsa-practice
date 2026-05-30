@@ -2,7 +2,7 @@
 // Example:
 // `[2, 1, 5, 1, 3, 2]`, with `k = 3` → maximum sum is `9` (`5+1+3`).
 
-function maxSubarraySumSlidingWindow(arr: number[], k: number) {
+export function maxSubarraySumSlidingWindow(arr: number[], k: number) {
   if (arr.length < k) return null;
 
   // initial window sum
@@ -22,12 +22,9 @@ function maxSubarraySumSlidingWindow(arr: number[], k: number) {
   return maxSum;
 }
 
-console.log(maxSubarraySumSlidingWindow([2, 1, 5, 1, 3, 2], 3));
-// -> 9
+// Naive: re-sum each window O(n*k)
 
-// Naive Implementation (Brute Force)
-
-function maxSubarraySumNaive(arr: number[], k: number) {
+export function maxSubarraySumNaive(arr: number[], k: number) {
   if (arr.length < k) return null;
 
   let maxSum = -Infinity;
@@ -42,6 +39,3 @@ function maxSubarraySumNaive(arr: number[], k: number) {
 
   return maxSum;
 }
-
-console.log(maxSubarraySumNaive([2, 1, 5, 1, 3, 2], 3));
-// -> 9

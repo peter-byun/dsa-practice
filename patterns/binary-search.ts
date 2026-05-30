@@ -2,7 +2,7 @@
 // Space complexity: O(1)
 // Limitation: The array must be sorted.
 
-function binarySearch(arr: number[], target: number): number | null {
+export function binarySearch(arr: number[], target: number): number | null {
   let left = 0;
   let right = arr.length - 1;
 

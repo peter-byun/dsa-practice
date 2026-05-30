@@ -1,5 +1,5 @@
-// Quick sort with clearer variable names
-function quickSort(arr: number[], left = 0, right = arr.length - 1): number[] {
+// Partition: smaller left of pivot, then recurse both sides
+export function quickSort(arr: number[], left = 0, right = arr.length - 1): number[] {
   if (left < right) {
     const pivotIndex = partition(arr, left, right);
 
@@ -12,7 +12,7 @@ function quickSort(arr: number[], left = 0, right = arr.length - 1): number[] {
   return arr;
 }
 
-function partition(arr: number[], left: number, right: number): number {
+export function partition(arr: number[], left: number, right: number): number {
   const pivot = arr[right]; // pick last element as pivot
   let i = left; // first index where we can put a smaller element
 

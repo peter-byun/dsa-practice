@@ -1,6 +1,6 @@
 // Simple String Search
 
-function simpleStringSearch(haystack: string, needle: string): number {
+export function simpleStringSearch(haystack: string, needle: string): number {
   const hLength = haystack.length;
   const nLength = needle.length;
 
@@ -23,4 +23,7 @@ function simpleStringSearch(haystack: string, needle: string): number {
 // Time complexity: O(n + m)
 // Space complexity: O(m)
 // Limitation: Preprocessing of the needle is required.
-// TODO: Implement the KMP algorithm.
+// KMP: build lps[] on needle, skip haystack shifts using lps
+export function kmpSearch(_haystack: string, _needle: string): number {
+  throw new Error("Not implemented");
+}

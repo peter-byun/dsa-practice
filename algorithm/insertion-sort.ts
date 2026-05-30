@@ -1,4 +1,5 @@
-function insertionSort(arr: number[]): number[] {
+// Card hand: pull arr[i] left into sorted prefix
+export function insertionSort(arr: number[]): number[] {
   // Outer loop: start from index 1 because the element at index 0 is trivially "sorted"
   for (let i = 1; i < arr.length; i++) {
     // Store the current value to insert later

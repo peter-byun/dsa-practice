@@ -7,7 +7,7 @@ Here are the 4 concepts to understand:
 When you access a property (obj.key), the JS engine performs a **lookup process**:
 
 1. Check if the property exists directly on the object.
-2. If not, look at the object’s **prototype** (obj.**proto**).
+2. If not, look at the object’s **prototype** (obj.**proto**). (Constructor's `__prototype__`).
 3. Continue walking the chain until either:
    - The property is found, or
    - The chain reaches null (end).
@@ -64,7 +64,7 @@ a.x = 10;
 a.y = 20;
 
 const b = {};
-b.y = 20; // added in different order
+b.y = 20; // added in different order. // Order matters because the hidden class's access is offset-based.
 b.x = 10;
 
 // Different hidden classes → cache misses → slower

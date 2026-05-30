@@ -1,5 +1,5 @@
-// Problem: Given a sorted array, find if there exists a pair of numbers whose sum equals a given target.
-function pairWithTargetSum(arr: number[], target: number) {
+// Sorted array: left=0, right=end; move pointer that overshoots target
+export function pairWithTargetSum(arr: number[], target: number) {
   let left = 0,
     right = arr.length - 1;
 
@@ -17,7 +17,7 @@ function pairWithTargetSum(arr: number[], target: number) {
 }
 
 // Naive Approach: O(N^2) time complexity
-function pairWithTargetSumNaive(arr: number[], target: number) {
+export function pairWithTargetSumNaive(arr: number[], target: number) {
   for (let i = 0; i < arr.length; i++) {
     for (let j = i + 1; j < arr.length; j++) {
       if (arr[i] + arr[j] === target) {

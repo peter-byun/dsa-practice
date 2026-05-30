@@ -1,7 +1,7 @@
 // When using recursion to solve a problem, you'd often want to have a variable outside the recursive function to keep the result between calls.
 // One way to do this is to use a helper recursive function inside the main function.
 
-function collectOddValues(arr: number[]): number[] {
+export function collectOddValues(arr: number[]): number[] {
   const result: number[] = [];
 
   function helper(helperInput: number[]) {
@@ -22,7 +22,7 @@ function collectOddValues(arr: number[]): number[] {
 }
 
 // If you for some reason want to use only one function, you can pass the result of each call to the next one, and initialize the function with default parameters.
-function collectOddValuesSingle(
+export function collectOddValuesSingle(
   arr: number[],
   result: number[] = []
 ): number[] {
