@@ -1,11 +1,13 @@
+import type { T } from "../types";
+
 // FIFO: enqueue back, dequeue front
 //   front → [ ] [ ] [ ] ← back
-export class Queue<T> {
+export class Queue {
   head: Node | null = null;
   tail: Node | null = null;
   length: number = 0;
 
-  initialize(val: any): boolean {
+  initialize(val: T): boolean {
     if (!this.head) {
       const node = new Node(val);
       this.head = node;
@@ -57,9 +59,9 @@ export class Queue<T> {
 }
 
 class Node {
-  val: any;
+  val: T;
   next: Node | null = null;
-  constructor(val: any) {
+  constructor(val: T) {
     this.val = val;
   }
 }

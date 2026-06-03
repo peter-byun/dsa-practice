@@ -1,8 +1,10 @@
+import type { T } from "../types";
+
 // Each node: prev ← [value] → next
 // head/tail pointers; push/pop at tail, shift/unshift at head
 type NullableNode = Node | null;
 
-export class DoublyLinkedList<T> {
+export class DoublyLinkedList {
   head: NullableNode = null;
   tail: NullableNode = null;
   length = 0;
@@ -180,11 +182,11 @@ export class DoublyLinkedList<T> {
 }
 
 class Node {
-  value: any;
+  value: T;
   prev: Node | null = null;
   next: Node | null = null;
 
-  constructor(value: any) {
+  constructor(value: T) {
     this.value = value;
   }
 }

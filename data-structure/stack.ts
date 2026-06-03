@@ -1,6 +1,8 @@
+import type { T } from "../types";
+
 // LIFO: push/pop at the same end (top)
 //   [bottom] ... [top] ← push/pop here
-export class Stack<T> {
+export class Stack {
   private head: Node | null = null;
   private length: number = 0;
 
@@ -61,10 +63,10 @@ export class Stack<T> {
 }
 
 class Node {
-  val: any;
+  val: T;
   next: Node | null = null;
   prev: Node | null = null;
-  constructor(val: any) {
+  constructor(val: T) {
     this.val = val;
   }
 }

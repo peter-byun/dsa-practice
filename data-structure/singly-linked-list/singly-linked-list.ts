@@ -1,8 +1,10 @@
-type NullableNode<T> = SLNode<T> | null;
+import type { T } from "../../types";
 
-export class SinglyLinkedList<T> {
-  head: NullableNode<T> = null;
-  tail: NullableNode<T> = null;
+type NullableNode = SLNode | null;
+
+export class SinglyLinkedList {
+  head: NullableNode = null;
+  tail: NullableNode = null;
   length = 0;
 
   constructor(value?: T) {
@@ -34,7 +36,7 @@ export class SinglyLinkedList<T> {
     return true;
   }
 
-  pop(): NullableNode<T> {
+  pop(): NullableNode {
     if (this.head === null) return null;
 
     if (this.length === 1) {
@@ -46,7 +48,6 @@ export class SinglyLinkedList<T> {
       return popped;
     }
 
-    // Find the node just before the tail
     let prev = this.head;
     let current = this.head;
     while (current.next !== null) {
@@ -59,10 +60,10 @@ export class SinglyLinkedList<T> {
     return current;
   }
 
-  get(index: number): NullableNode<T> {
+  get(index: number): NullableNode {
     if (this.head === null || this.isOutOfRange(index)) return null;
 
-    let node: NullableNode<T> = this.head;
+    let node: NullableNode = this.head;
     for (let i = 0; i < index; i++) {
       node = node!.next;
       if (node === null) return null;
@@ -80,13 +81,11 @@ export class SinglyLinkedList<T> {
   }
 
   insert(index: number, value: T): boolean {
-    // Allow inserting at end: index ∈ [0, length]
     if (index < 0 || index > this.length) {
       throw new OutOfRangeError();
     }
 
     if (index === 0) {
-      // unshift
       const newNode = new SLNode(value);
       newNode.next = this.head;
       this.head = newNode;
@@ -96,11 +95,9 @@ export class SinglyLinkedList<T> {
     }
 
     if (index === this.length) {
-      // append
       return this.push(value);
     }
 
-    // middle insert: link new node between prev and curr
     const prevNode = this.get(index - 1);
     if (prevNode === null) throw new OutOfRangeError();
 
@@ -117,7 +114,6 @@ export class SinglyLinkedList<T> {
     }
 
     if (index === 0) {
-      // remove head
       const oldHead = this.head!;
       this.head = oldHead.next;
       oldHead.next = null;
@@ -127,11 +123,10 @@ export class SinglyLinkedList<T> {
     }
 
     const prev = this.get(index - 1)!;
-    const toRemove = prev.next; // guaranteed not null due to range check
+    const toRemove = prev.next;
     prev.next = toRemove ? toRemove.next : null;
 
     if (prev.next === null) {
-      // removed last node -> update tail
       this.tail = prev;
     }
 
@@ -140,28 +135,24 @@ export class SinglyLinkedList<T> {
     return true;
   }
 
-  /**
-   * Rotate left by one: move the head node to the end.
-   * No-ops for length < 2.
-   */
   rotate(): boolean {
     if (this.length < 2 || this.head === null || this.tail === null) {
       return false;
     }
 
     const oldHead = this.head;
-    this.head = oldHead.next; // new head is second node
-    oldHead.next = null; // detach old head
-    this.tail.next = oldHead; // append old head to end
-    this.tail = oldHead; // update tail
+    this.head = oldHead.next;
+    oldHead.next = null;
+    this.tail.next = oldHead;
+    this.tail = oldHead;
 
     return true;
   }
 }
 
-class SLNode<T> {
+class SLNode {
   value: T;
-  next: SLNode<T> | null = null;
+  next: SLNode | null = null;
   constructor(value: T) {
     this.value = value;
   }

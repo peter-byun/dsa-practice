@@ -1,6 +1,8 @@
+import type { T } from "../types";
+
 // Lower priority number = served first (min-heap on priority)
 //   enqueue(value, priority) → heap ordered by priority
-export class PriorityQueue<T> {
+export class PriorityQueue {
   enqueue(value: T, _priority: number): void {
     throw new Error("Not implemented");
   }

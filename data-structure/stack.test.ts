@@ -3,7 +3,7 @@ import { Stack } from "./stack";
 
 describe("Stack", () => {
   test("push, pop, peek, size", () => {
-    const stack = new Stack<number>();
+    const stack = new Stack();
     stack.push(1);
     stack.push(2);
     expect(stack.size()).toBe(2);

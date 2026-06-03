@@ -3,7 +3,7 @@ import { DoublyLinkedList } from "./doubly-linked-list";
 
 describe("Doubly Linked List", () => {
   test("push, pop, shift, unshift", () => {
-    const list = new DoublyLinkedList<number>();
+    const list = new DoublyLinkedList();
     list.push(1);
     list.push(2);
     list.unshift(0);
@@ -16,7 +16,7 @@ describe("Doubly Linked List", () => {
   });
 
   test("get, set, insert, remove", () => {
-    const list = new DoublyLinkedList<number>();
+    const list = new DoublyLinkedList();
     list.push(1);
     list.push(2);
     list.insert(1, 99);
@@ -28,7 +28,7 @@ describe("Doubly Linked List", () => {
   });
 
   test("reverse", () => {
-    const list = new DoublyLinkedList<number>();
+    const list = new DoublyLinkedList();
     list.push(1);
     list.push(2);
     list.push(3);

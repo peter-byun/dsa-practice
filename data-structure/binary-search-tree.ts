@@ -2,30 +2,115 @@
 //        8
 //       / \
 //      3   10
-export class BinarySearchTree<T> {
-  root: BSTNode<T> | null = null;
+export class BinarySearchTree {
+  root: BSTNode | null = null;
 
-  insert(value: T): BSTNode<T> {
+  private findNode(
+    value: any,
+    node: BSTNode,
+    parent?: BSTNode,
+  ): {
+    node: BSTNode;
+    /** left, self, right */
+    positionToInsert: -1 | 0 | 1;
+    parent?: BSTNode;
+  } {
+    if (value > node.value) {
+      if (!node.left) {
+        return {
+          node,
+          parent,
+          positionToInsert: -1,
+        };
+      } else {
+        return this.findNode(value, node.left, node);
+      }
+    } else if (value > node.value) {
+      if (!node.right) {
+        return {
+          node,
+          parent,
+          positionToInsert: 1,
+        };
+      } else {
+        return this.findNode(value, node.right, node);
+      }
+    } else {
+      // equals
+      return {
+        node,
+        parent,
+        positionToInsert: 0,
+      };
+    }
+  }
+
+  insert(value: any): BSTNode {
+    if (!this.root) {
+      this.root = new BSTNode(value);
+      return this.root;
+    }
+    const newNode = new BSTNode(value);
+    const positionToInsert = this.findNode(value, this.root);
+    switch (positionToInsert.positionToInsert) {
+      case -1:
+        positionToInsert.node.left = newNode;
+        return newNode;
+      case 1:
+        positionToInsert.node.right = newNode;
+        return newNode;
+      default:
+        positionToInsert.node.left = newNode;
+        return newNode;
+    }
+  }
+
+  find(value: any): BSTNode | null {
+    if (!this.root) {
+      return null;
+    }
+    const nodeFound = this.findNode(value, this.root);
+    return nodeFound.positionToInsert === 0 ? nodeFound.node : null;
+  }
+
+  remove(value: any): BSTNode | null {
+    if (!this.root) {
+      return null;
+    }
+    const nodeFound = this.findNode(value, this.root);
+    if (nodeFound.positionToInsert === 0) {
+      if (nodeFound.parent === this.root) {
+        this.root = null;
+        return nodeFound.node;
+      }
+      if (!nodeFound.parent) {
+        // Orphan exception. Root nodes should be the only orphan node.
+        throw new Error(
+          `Orphan node can not be removed. Node's value: ${nodeFound.node.value}`,
+        );
+      }
+      // parent found
+      if (nodeFound.parent.left === nodeFound.node) {
+        nodeFound.parent.left = null;
+        return nodeFound.node;
+      } else if (nodeFound.parent.right === nodeFound.node) {
+        nodeFound.parent.right = null;
+        return nodeFound.node;
+      }
+    }
+
+    return null;
+  }
+
+  findSecondary(value: any): BSTNode | null {
     throw new Error("Not implemented");
   }
 
-  find(value: T): BSTNode<T> | null {
+  findMin(): BSTNode | null {
     throw new Error("Not implemented");
   }
 
-  remove(value: T): BSTNode<T> | null {
-    throw new Error("Not implemented");
-  }
-
-  findSecondary(value: T): BSTNode<T> | null {
-    throw new Error("Not implemented");
-  }
-
-  findMin(): BSTNode<T> | null {
-    throw new Error("Not implemented");
-  }
-
-  findMax(): BSTNode<T> | null {
+  findMax(): BSTNode | null {
     throw new Error("Not implemented");
   }
 
@@ -33,29 +118,29 @@ export class BinarySearchTree<T> {
     throw new Error("Not implemented");
   }
 
-  dfsPreOrder(): T[] {
+  dfsPreOrder(): any[] {
     throw new Error("Not implemented");
   }
 
-  dfsInOrder(): T[] {
+  dfsInOrder(): any[] {
     throw new Error("Not implemented");
   }
 
-  dfsPostOrder(): T[] {
+  dfsPostOrder(): any[] {
     throw new Error("Not implemented");
   }
 
-  bfs(): T[] {
+  bfs(): any[] {
     throw new Error("Not implemented");
   }
 }
 
-export class BSTNode<T> {
-  value: T;
-  left: BSTNode<T> | null = null;
-  right: BSTNode<T> | null = null;
+export class BSTNode {
+  value: any;
+  left: BSTNode | null = null;
+  right: BSTNode | null = null;
 
-  constructor(value: T) {
+  constructor(value: any) {
     this.value = value;
   }
 }

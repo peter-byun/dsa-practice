@@ -3,7 +3,7 @@ import { BinarySearchTree } from "./binary-search-tree";
 
 describe("BinarySearchTree", () => {
   test("insert, find, findMin, findMax", () => {
-    const tree = new BinarySearchTree<number>();
+    const tree = new BinarySearchTree();
     [10, 5, 15, 3, 7].forEach((n) => tree.insert(n));
     expect(tree.find(7)?.value).toBe(7);
     expect(tree.find(99)).toBeNull();
@@ -12,7 +12,7 @@ describe("BinarySearchTree", () => {
   });
 
   test("remove", () => {
-    const tree = new BinarySearchTree<number>();
+    const tree = new BinarySearchTree();
     [10, 5, 15, 3, 7, 12, 20].forEach((n) => tree.insert(n));
     tree.remove(3);
     expect(tree.find(3)).toBeNull();
@@ -20,7 +20,7 @@ describe("BinarySearchTree", () => {
   });
 
   test("traversals", () => {
-    const tree = new BinarySearchTree<number>();
+    const tree = new BinarySearchTree();
     [10, 5, 15, 3, 7].forEach((n) => tree.insert(n));
     expect(tree.dfsInOrder()).toEqual([3, 5, 7, 10, 15]);
     expect(tree.dfsPreOrder()[0]).toBe(10);
@@ -29,7 +29,7 @@ describe("BinarySearchTree", () => {
   });
 
   test("isBalanced", () => {
-    const balanced = new BinarySearchTree<number>();
+    const balanced = new BinarySearchTree();
     [10, 5, 15].forEach((n) => balanced.insert(n));
     expect(balanced.isBalanced()).toBe(true);
   });

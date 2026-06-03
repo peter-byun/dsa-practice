@@ -3,7 +3,7 @@ import { PriorityQueue } from "./priority-queue";
 
 describe("PriorityQueue", () => {
   test("dequeues lower priority number first", () => {
-    const pq = new PriorityQueue<string>();
+    const pq = new PriorityQueue();
     pq.enqueue("low", 3);
     pq.enqueue("high", 1);
     pq.enqueue("mid", 2);

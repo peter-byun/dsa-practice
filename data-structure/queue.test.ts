@@ -3,7 +3,7 @@ import { Queue } from "./queue";
 
 describe("Queue", () => {
   test("enqueue, dequeue, peek, isEmpty, size", () => {
-    const queue = new Queue<string>();
+    const queue = new Queue();
     expect(queue.isEmpty()).toBe(true);
     queue.enqueue("a");
     queue.enqueue("b");

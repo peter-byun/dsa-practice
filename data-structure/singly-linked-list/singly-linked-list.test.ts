@@ -3,7 +3,7 @@ import { SinglyLinkedList } from "./singly-linked-list";
 
 describe("Singly Linked List", () => {
   test("get, set", () => {
-    const ssl = new SinglyLinkedList<number>();
+    const ssl = new SinglyLinkedList();
     ssl.push(1);
     ssl.push(2);
 
@@ -21,7 +21,7 @@ describe("Singly Linked List", () => {
   });
 
   test("insert, remove", () => {
-    const ssl = new SinglyLinkedList<number>();
+    const ssl = new SinglyLinkedList();
     ssl.insert(0, 1);
     ssl.push(2);
     ssl.push(3);
@@ -39,7 +39,7 @@ describe("Singly Linked List", () => {
   });
 
   test("rotate", () => {
-    const ssl = new SinglyLinkedList<number>();
+    const ssl = new SinglyLinkedList();
     ssl.push(1);
     ssl.push(2);
     ssl.push(3);
