@@ -3,7 +3,7 @@ import { HashTable } from "./hash-tables";
 
 describe("HashTable", () => {
   test("set, get, hasKey, remove, keys, values, clear", () => {
-    const map = new HashTable<number>();
+    const map = new HashTable();
     map.set("a", 1);
     map.set("b", 2);
     expect(map.get("a")).toBe(1);
